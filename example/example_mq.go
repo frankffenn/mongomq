@@ -22,7 +22,6 @@ func main() {
 		ctx,
 		mq.Topic(TestTopic),
 		mq.Database(TestDB),
-		mq.MongoURI(TestURI),
 		mq.Replication(true),
 	)
 	if err != nil {

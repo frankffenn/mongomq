@@ -9,7 +9,6 @@ const (
 type Options struct {
 	Topic       string
 	Size        uint64
-	MongoURI    string
 	Database    string
 	Replication bool
 }
@@ -45,12 +44,6 @@ func Size(size uint64) Option {
 func Database(name string) Option {
 	return func(opt *Options) {
 		opt.Database = name
-	}
-}
-
-func MongoURI(uri string) Option {
-	return func(opt *Options) {
-		opt.MongoURI = uri
 	}
 }
 

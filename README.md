@@ -53,3 +53,7 @@ func main() {
 ```
 
 View the [MongoMQ Example](https://github.com/frankffenn/mongomq/blob/master/example/example_mq.go)
+
+## Status 
+
+Just for testing. This isn't used in production yet.
