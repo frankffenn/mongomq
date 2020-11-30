@@ -52,6 +52,12 @@ func main() {
 }
 ```
 
+run example
+```
+    cd example/
+    MONGO_URI="mongodb://admin:example@127.0.0.1:27017/lotus?authsource=admin" go run  *.go
+```
+
 View the [MongoMQ Example](https://github.com/frankffenn/mongomq/blob/master/example/example_mq.go)
 
 ## Status 

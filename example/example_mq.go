@@ -10,9 +10,9 @@ import (
 )
 
 const (
-	TestURI   = "mongodb://root:example@127.0.0.1:7017,127.0.0.1:7018,127.0.0.1:7019/test?authsource=admin"
-	TestTopic = "col1"
-	TestDB    = "test"
+	TestURI        = "mongodb://root:example@127.0.0.1:7017,127.0.0.1:7018,127.0.0.1:7019/test?authsource=admin"
+	TestCollection = "col1"
+	TestDB         = "test"
 )
 
 func main() {
@@ -20,7 +20,7 @@ func main() {
 
 	mq, err := mq.NewChannel(
 		ctx,
-		mq.Topic(TestTopic),
+		mq.Collection(TestCollection),
 		mq.Database(TestDB),
 		mq.Replication(true),
 	)
@@ -29,13 +29,13 @@ func main() {
 	}
 
 	go func() {
-		for i := 0; i < 5; i++ {
-			mq.Publish(TestTopic, fmt.Sprintf("hello mq , index=%d", i))
+		for i := 0; i < 50; i++ {
+			mq.Publish("test", fmt.Sprintf("hello mq , index=%d", i))
 			<-time.After(1 * time.Second)
 		}
 	}()
 
-	msg, err := mq.Subscribe(TestTopic)
+	msg, err := mq.Subscribe("test")
 	if err != nil {
 		log.Fatalf("subscribe channel failed, %v", err)
 	}

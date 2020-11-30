@@ -2,12 +2,12 @@ package mq
 
 const (
 	_defaultSize     = 512 * 1 << 10 // 512 Kb
-	_defaultDatabase = "mqdatabase"
-	_defaultTopic    = "mqtopic"
+	_defaultDatabase = "mgo_db"
+	_defaultCollection    = "mgo_queue"
 )
 
 type Options struct {
-	Topic       string
+	Collection  string
 	Size        uint64
 	Database    string
 	Replication bool
@@ -17,9 +17,9 @@ type Option func(*Options)
 
 func newOption(opts ...Option) Options {
 	option := Options{
-		Database: _defaultDatabase,
-		Topic:    _defaultTopic,
-		Size:     _defaultSize,
+		Database: 	_defaultDatabase,
+		Collection: _defaultCollection,
+		Size:     	_defaultSize,
 	}
 
 	for _, o := range opts {
@@ -29,9 +29,9 @@ func newOption(opts ...Option) Options {
 	return option
 }
 
-func Topic(name string) Option {
+func Collection(name string) Option {
 	return func(opt *Options) {
-		opt.Topic = name
+		opt.Collection = name
 	}
 }
 
